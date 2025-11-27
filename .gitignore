@@ -1,0 +1,16 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+out/
+bin/
+
+# Mac/Win garbage
+.DS_Store
+Thumbs.db
