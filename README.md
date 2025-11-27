@@ -1,18 +1,23 @@
-## Getting Started
+# Witch Hunt
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+https://i.imgur.com/0J4Vq3g.png
 
-## Folder Structure
+> “The village of Eldermoor burns. Accusations fly like crows.  
+> You have until dawn to find the real witch…  
+> or become the next pyre.”
 
-The workspace contains two folders by default, where:
+A dark, atmospheric text adventure written in pure Java.  
+Features:
+- 13 haunted locations
+- Sanity / Faith / Suspicion system
+- Cursed items & lying NPCs
+- Multiple endings (including the True Witch ending)
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+### Current state
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Currently playable core: movement, take/drop, inventory, status, fog-thick descriptions.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+### How to run
+```bash
+javac *.java
+java Main
