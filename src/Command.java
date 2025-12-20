@@ -1,25 +1,25 @@
 public class Command {
-	private final CommandWord commndword;
-	private final String argument;
+	private final CommandWord commandWord;
+	private final String secondWord;
 
 	public Command(CommandWord commandWord, String argument) {
-		this.commndword = commandWord;
-		this.argument = argument;
+		this.commandWord = commandWord;
+		this.secondWord = argument;
 	}
 
 	public CommandWord getCommandWord() {
-		return commndword;
+		return commandWord;
 	}
 
-	public String getArgument() {
-		return argument;
+	public String getSecondWord() {
+		return secondWord;
 	}
 
 	public boolean isUnknown() {
-		return commndword == CommandWord.UNKNOWN;
+		return commandWord == CommandWord.UNKNOWN;
 	}
 
-	public boolean hasArgument() {
-		return argument != null;
+	public boolean hasSecondWord() {
+		return secondWord != null;
 	}
 }
