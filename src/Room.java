@@ -43,6 +43,7 @@ public class Room {
         return String.join(", ", exits.keySet());
     }
 
+    // NPCs
     public String getNpc() {
         return npc;
     }
@@ -51,6 +52,7 @@ public class Room {
         this.npc = npc;
     }
 
+    // Door access
     public boolean isLocked() {
         return isLocked;
     }
@@ -63,12 +65,28 @@ public class Room {
     public String getLockMessage() {
         return (lockMessage == null || lockMessage.isBlank()) ? "It won't budge." : lockMessage;
     }
-
-    public HashMap<String, Item> getItems() {
-        return items;
+    
+    // Items
+    public void addItem(Item item) {
+        items.put(item.getName(), item);
     }
 
-    public void setItems(HashMap<String, Item> items) {
-        this.items = items;
+    public Item getItem(String itemName) {
+        return items.get(itemName.toLowerCase());
+    }
+
+    public Item removeItem(String itemName) {
+        return items.remove(itemName.toLowerCase());
+    }
+
+    public String getItemString() {
+        if (items.isEmpty()) {
+            System.out.println("There is nothing noteworthy here.");
+        }
+        StringBuilder sb = new StringBuilder("You notice teh following items: ");
+        for (Item item : items.values()) {
+            sb.append(item.getName()).append(", ");
+        }
+        return sb.toString();
     }
 }
