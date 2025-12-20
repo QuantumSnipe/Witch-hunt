@@ -6,7 +6,7 @@ public class Item {
 
     public Item(String description, String name) {
         this.description = description;
-        this.name = name;
+        this.name = name.toLowerCase();
         this.weight = 0;
     }
 
