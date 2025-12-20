@@ -1,11 +1,21 @@
 
+import java.util.ArrayList;
+
+
 public class Game {
     private final Parser parser;
+    private final Player player;
     private Room currentRoom;
+
+
+    private ArrayList<Room> visitedRooms;
 
     public Game() {
         createRooms();
         parser = new Parser();
+        player = new Player();
+        visitedRooms = new ArrayList<>();
+
     }
 
     private void createRooms() {
@@ -62,6 +72,7 @@ public class Game {
         Item dagger = new Item("A silver dagger, resting on the table", "Silver Dagger");
 
 
+
         currentRoom = square;
         System.out.println(square);
     }
@@ -94,6 +105,7 @@ public class Game {
             case UNKNOWN -> System.out.println("I don't know what you mean...");
             case HELP -> printHelp();
             case GO -> goRoom(command);
+            case LOOK -> lookInRoom();
             case QUIT -> wantToQuit = quit(command);
         }
         return wantToQuit;
@@ -107,31 +119,62 @@ public class Game {
         parser.showCommands();
     }
 
+    /**
+     * Try to go to one direction if there is an exit, enter
+     * new room, or print an error message
+     * @param command
+     */
     public void goRoom(Command command) {
-        if (!command.hasArgument()) {
+        if (!command.hasSecondWord()) {
             System.out.println("Go where?");
             return;
         }
 
-        String direction = command.getArgument();
+        if (command.getSecondWord().equals("back")) {
+            Room lastRoom = null;
 
-        // Try to leave current room
-        Room nextRoom = currentRoom.getExit(direction);
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
+            if (!visitedRooms.isEmpty()) {
+                lastRoom = visitedRooms.get(visitedRooms.size() - 1);
+            }
+
+            if (lastRoom == getCurrentRoom() || lastRoom == null) {
+                System.out.println("You can't go back any further!");
+            } else {
+                setCurrentRoom(lastRoom);
+                visitedRooms.remove(visitedRooms.size() - 1);
+            }
         } else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            String direction = command.getSecondWord();
+
+            Room nextRoom = currentRoom.getExit(direction);
+
+            if (nextRoom == null) {
+                System.out.println("There is no door");
+            } else {
+                System.out.println(currentRoom.getLongDescription());
+            }
         }
     }
 
+    public void lookInRoom() {
+
+    }
+
     private boolean quit(Command command) {
-        if (command.hasArgument()) {
+        if (command.hasSecondWord()) {
             System.out.println("Quit what?");
             return false;
         }
         else {
             return true;
         }
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
     }
 }
