@@ -1,5 +1,8 @@
 import java.util.HashMap;
 
+/**
+ * Player class, the main character of the game and controllable.
+ */
 public class Player {
     private HashMap<String, Item> inventory;
     private int maxWeight = 50;
@@ -20,7 +23,7 @@ public class Player {
                 System.out.println("You picked " + item);
             }
         } else {
-            System.out.println("You reached weight limit. You can't carry more items");
+            System.out.println("You reached your weight limit. You can't carry more items");
         }
     }
 
