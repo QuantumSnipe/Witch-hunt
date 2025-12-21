@@ -67,7 +67,7 @@ public class Room {
     }
     
     // Items
-    public void addItem(Item item) {
+    public void addItemToRoom(Item item) {
         items.put(item.getName(), item);
     }
 
@@ -75,7 +75,7 @@ public class Room {
         return items.get(itemName.toLowerCase());
     }
 
-    public Item removeItem(String itemName) {
+    public Item removeItemFromRoom(String itemName) {
         return items.remove(itemName.toLowerCase());
     }
 
@@ -83,7 +83,7 @@ public class Room {
         if (items.isEmpty()) {
             System.out.println("There is nothing noteworthy here.");
         }
-        StringBuilder sb = new StringBuilder("You notice teh following items: ");
+        StringBuilder sb = new StringBuilder("You notice the following items: ");
         for (Item item : items.values()) {
             sb.append(item.getName()).append(", ");
         }
