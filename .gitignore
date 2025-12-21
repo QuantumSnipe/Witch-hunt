@@ -8,8 +8,8 @@
 .idea/
 *.iml
 .vscode/
-out/
-bin/
+.out/
+.bin/
 
 # Mac/Win
 .DS_Store
