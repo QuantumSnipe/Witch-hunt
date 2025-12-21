@@ -34,7 +34,7 @@ public class Room {
 
     public String getLongDescription() {
         String longDescription = "You are " + name + ".\n" + description + "\nExits: " + exitList();
-        return longDescription + "\n" + getExitList() + getItemInRoomString();
+        return longDescription + "\n" + getExitList() + ".\n" + getItemInRoomString();
     }
 
     public String getShortDescription() {
@@ -94,8 +94,13 @@ public class Room {
             System.out.println("There is nothing noteworthy here.");
         }
         StringBuilder sb = new StringBuilder("You notice the following items: ");
+        int count = 0;
         for (Item item : items.values()) {
-            sb.append(item.getName()).append(", ");
+            if (count > 0) {
+                sb.append(", ");
+            }
+            sb.append(item.getName());
+            count++;
         }
         return sb.toString();
     }
