@@ -1,0 +1,54 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam nodesep 50
+skinparam ranksep 50
+
+[Deep Woods] as deepwoods
+[Witch's Cottage] as cottage
+[Old Cemetery] as cemetery
+[Herbalist's Garden] as garden
+[Gallows Hill] as gallows
+[Apothecary Shop] as apothecary
+[Blacksmith's Forge] as forge
+[Village Square] as square
+[Tavern] as tavern
+[Meeting House] as meetinghouse
+[Magistrate's House] as magistrate
+[Church] as church
+[Church Cellar] as cellar
+[Abandoned Barn] as barn
+[Graveyard] as graveyard
+
+deepwoods -down-> cottage : north/south
+cottage -down-> garden : south/north
+
+garden -left-> gallows : west/east
+garden -down-> apothecary : south/north
+garden -right-> cemetery : east/west
+
+gallows -down-> forge : south/north
+
+apothecary -down-> tavern : south/north
+
+forge -down-> square : south/north
+
+square -up-> forge : north
+square -right-> tavern : east/west
+square -down-> barn : south/north
+square -left-> magistrate : west/east
+
+tavern -right-> meetinghouse : east/west
+
+magistrate -up-> church : north/south
+
+church -down-> cellar : down/up
+
+' Optional graveyard connection
+apothecary -right-> graveyard : east/west
+
+note bottom of square
+  Starting point: Village Square
+end note
+
+@enduml
