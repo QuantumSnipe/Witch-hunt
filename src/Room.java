@@ -33,7 +33,13 @@ public class Room {
     }
 
     public String getLongDescription() {
-        return "You are in " + name + ".\n" + description + " What do you want to do next?" + "\nExits: " + exitList();
+        String longDescription = "You are " + name + ".\n" + description + "\nExits: " + exitList();
+        return longDescription + "\n" + getExitList() + getItemInRoomString();
+    }
+
+    public String getShortDescription() {
+        StringBuilder sb = new StringBuilder();
+        return sb.append("You are ").append(name).toString();
     }
 
       private String exitList() {
@@ -41,6 +47,10 @@ public class Room {
             return "none";
         }
         return String.join(", ", exits.keySet());
+    }
+
+    public String getExitList() {
+        return exitList();
     }
 
     // NPCs
@@ -79,7 +89,7 @@ public class Room {
         return items.remove(itemName.toLowerCase());
     }
 
-    public String getItemString() {
+    public String getItemInRoomString() {
         if (items.isEmpty()) {
             System.out.println("There is nothing noteworthy here.");
         }
