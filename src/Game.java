@@ -1,45 +1,36 @@
-
-import java.util.ArrayList;
-
-
 public class Game {
     private final Parser parser;
     private Room currentRoom;
 
-
-    private final ArrayList<Room> visitedRooms;
-
     public Game() {
         createRooms();
         parser = new Parser();
-        visitedRooms = new ArrayList<>();
-
     }
 
     private void createRooms() {
-        Room square = new Room("Village Square", "Cobblestones slick with fog. Torches flicker.");
-        Room church = new Room("St. Aldric's Church", "Cold stone arches with damp. Candles sputter before a crooked altar. " +
-                               "The scent of incense struggles to hide the rot beneath the floorboards.");
-        Room graveyard = new Room("Graveyard", "Iron gates lean inward, guarding rows of tilting headstones. " +
-                                   "A raven watches from a cracked angel's shoulders.");
-        Room tavern = new Room("The Black Goat Tavern", "Smoke, ale, and whispers. Eyes " +
-                               "follow you from the shadows.");
+        Room square = new Room("in the Village Square", "Cobblestones slick with fog. Torches flicker.");
+        Room church = new Room("in St. Aldric's Church", "Cold stone arches with damp. Candles sputter before a crooked altar. " +
+                "The scent of incense struggles to hide the rot beneath the floorboards.");
+        Room graveyard = new Room("in the graveyard", "Iron gates lean inward, guarding rows of tilting headstones. " +
+                "A raven watches from a cracked angel's shoulders.");
+        Room tavern = new Room("in the Black Goat Tavern", "Smoke, ale, and whispers. Eyes " +
+                "follow you from the shadows.");
         Room gallows = new Room("Gallows Hill", "You stand atop the barren hill where the village hangs its condemned. A weathered wooden scaffold looms overhead. Below it lies a patch of trampled earth stained dark with old blood. ");
         Room blacksmith = new Room("Blacksmith's Forge", "Tools hang in perfect rows-except one hammer, crusted with dried blood.");
         Room mayor = new Room("Mayor Hawthorne's Manor", "Polished oak and velvet lies. Portraits from past mayors hang around. A small " +
-                              "fire burns red and blue.");
+                "fire burns red and blue.");
         Room well = new Room("Village Well", "A stone ring in the square's corner.");
         Room forest = new Room("The Dark Woods", "The trees stand tall and too close together, " +
-                               "their roots clutching bones of old paths.");
+                "their roots clutching bones of old paths.");
         Room witchHut = new Room("Witch's Hut (Forest Edge)", "A crooked cottage of bones and thatch. " +
-                                 "Herbs dry upside-down. A cauldron bubbles with something...");
+                "Herbs dry upside-down. A cauldron bubbles with something...");
 
         Room apothecary = new Room("Apothecary shop", "The air is thick with the smell of dried herbs.");
-        Room meetingHouse = new Room("In the village meeting house", "The old court house. The single room is lit only by a dying fire.");
-        Room churchCellar = new Room("in the damp cellar beneath the church", "The air is cold and stale. Chains hang from the walls, and a small wooden cage stands empty in the corner.");
-        Room magistratesHouse = new Room("in the magistrate's house", "Dark wood paneling and heavy furniture speak of wealth and authority. A large desk holds papers and a quill still wet with ink. A locked door leads deeper in the house.");
-        Room oldCemetery = new Room("in the old cemetery", "Moss-covered headstones lean at odd angles. A fresh grave has been dug recently-no marker yet.");
-        Room herbGarden = new Room("in the herbalist's overgrown garden", "Weeds and strange plants choke the once-tidy rows. A small stone well stands in the center.");
+        Room meetingHouse = new Room("the village meeting house", "The old court house. The single room is lit only by a dying fire.");
+        Room churchCellar = new Room("the damp cellar beneath the church", "The air is cold and stale. Chains hang from the walls, and a small wooden cage stands empty in the corner.");
+        Room magistratesHouse = new Room("the magistrate's house", "Dark wood paneling and heavy furniture speak of wealth and authority. A large desk holds papers and a quill still wet with ink. A locked door leads deeper in the house.");
+        Room oldCemetery = new Room("the old cemetery", "Moss-covered headstones lean at odd angles. A fresh grave has been dug recently-no marker yet.");
+        Room herbGarden = new Room("the herbalist's overgrown garden", "Weeds and strange plants choke the once-tidy rows. A small stone well stands in the center.");
 
 
         // initialize exits and directions
@@ -89,14 +80,13 @@ public class Game {
 
         witchHut.setExit("west", forest);
 
-        createItems(church, tavern, graveyard, witchHut, blacksmith, churchCellar, herbGarden, meetingHouse, oldCemetery, magistratesHouse);
+        createItems(church, graveyard, witchHut, blacksmith, churchCellar, herbGarden, meetingHouse, oldCemetery, magistratesHouse);
 
-  
         currentRoom = square;
         System.out.println(square);
     }
 
-    private void createItems(Room church, Room tavern, Room graveyard, Room witchhut, Room blacksmith, Room churchCellar, Room herbGarden, Room meetingHouse, Room oldCemetery, Room magistratesHouse) {
+    private void createItems(Room church, Room graveyard, Room witchhut, Room blacksmith, Room churchCellar, Room herbGarden, Room meetingHouse, Room oldCemetery, Room magistratesHouse) {
         Item letter = new Item("We saw the witch. She shouted these weird curse words to us. She should burn in hell. I left something on the graveyard which should help.", "Letter from a witness");
         Item potion = new Item("Restores some health", "Red Potion");
         Item dagger = new Item("A silver dagger, resting on the table", "Silver Dagger");
@@ -111,17 +101,18 @@ public class Game {
         Item herbsBundle = new Item("A dried bundle of suspicious plants: belladona, henbane, and wolfsbane.", "herbs");
 
 
-
         church.addItemToRoom(silverCross);
         church.addItemToRoom(potion);
         graveyard.addItemToRoom(blackCandle);
+        graveyard.addItemToRoom(prickingNeedle);
         churchCellar.addItemToRoom(spellbook);
         witchhut.addItemToRoom(cauldron);
         oldCemetery.addItemToRoom(poppet);
         herbGarden.addItemToRoom(mandrake);
         herbGarden.addItemToRoom(herbsBundle);
-        magistratesHouse.addItemToRoom(prickingNeedle);
+        magistratesHouse.addItemToRoom(letter);
         blacksmith.addItemToRoom(dagger);
+        meetingHouse.addItemToRoom(torch);
     }
 
     public void playGame() {
@@ -152,7 +143,7 @@ public class Game {
             case UNKNOWN -> System.out.println("I don't know what you mean...");
             case HELP -> printHelp();
             case GO -> goRoom(command);
-            case LOOK -> lookInRoom();
+            case LOOK -> lookInRoom(command);
             case QUIT -> wantToQuit = quit(command);
         }
         return wantToQuit;
@@ -167,8 +158,9 @@ public class Game {
     }
 
     /**
-     * Try to go to one direction if there is an exit, enter
+     * Try to go to one direction. If there is an exit, enter
      * new room, or print an error message
+     *
      * @param command
      */
     public void goRoom(Command command) {
@@ -177,34 +169,35 @@ public class Game {
             return;
         }
 
-        if (command.getSecondWord().equals("back")) {
-            Room lastRoom = null;
+        String direction = command.getSecondWord();
 
-            if (!visitedRooms.isEmpty()) {
-                lastRoom = visitedRooms.get(visitedRooms.size() - 1);
-            }
+        Room nextRoom = currentRoom.getExit(direction);
 
-            if (lastRoom == getCurrentRoom() || lastRoom == null) {
-                System.out.println("You can't go back any further!");
-            } else {
-                setCurrentRoom(lastRoom);
-                visitedRooms.remove(visitedRooms.size() - 1);
-            }
+        if (nextRoom == null) {
+            System.out.println("There is no door");
         } else {
-            String direction = command.getSecondWord();
-
-            Room nextRoom = currentRoom.getExit(direction);
-
-            if (nextRoom == null) {
-                System.out.println("There is no door");
-            } else {
-                System.out.println(currentRoom.getLongDescription());
-            }
+            currentRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
         }
     }
 
-    public void lookInRoom() {
-
+    /**
+     * Look around when you are in a room 
+     * to find items. 
+     */
+    public void lookInRoom(Command command) {
+        if (command.hasSecondWord()) {
+            String itemName = command.getSecondWord();
+            Item item = currentRoom.getItem(itemName);
+            if (item != null) {
+                System.out.println(item.getDescription());
+            } else {
+                System.out.println("There is no " + itemName + " in this room.");
+            }
+        } else {
+            // Just look- redescribes the entire room (now includes items automatically)
+            System.out.println(currentRoom.getLongDescription());
+        }
     }
 
     private boolean quit(Command command) {
@@ -217,6 +210,7 @@ public class Game {
         }
     }
 
+    // Getter method which helps with testing
     public Room getCurrentRoom() {
         return currentRoom;
     }
