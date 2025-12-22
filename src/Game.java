@@ -3,8 +3,8 @@ public class Game {
     private Room currentRoom;
 
     public Game() {
-        createRooms();
         parser = new Parser();
+        createRooms();
     }
 
     private void createRooms() {
@@ -82,8 +82,9 @@ public class Game {
 
         createItems(church, graveyard, witchHut, blacksmith, churchCellar, herbGarden, meetingHouse, oldCemetery, magistratesHouse);
 
+
         currentRoom = square;
-        System.out.println(square);
+        System.out.println(currentRoom);
     }
 
     private void createItems(Room church, Room graveyard, Room witchhut, Room blacksmith, Room churchCellar, Room herbGarden, Room meetingHouse, Room oldCemetery, Room magistratesHouse) {
@@ -122,13 +123,12 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("The pyre is cold. You survived... this time.");
+        System.out.println("Thanx for playing! Until the next adventure...");
     }
 
     public void printWelcome() {
-        System.out.println();
         System.out.println("Welcome to Eldermoon Village.");
-        System.out.println("A witchhunt is taking place. You're not here to save anyone-you're here to survive the night.");
+        System.out.println("A witchhunt is taking place. A secret is being concealed. Survive the night and discover Eldermoon's secrets.");
         System.out.println("Hunt for the real witch...or become the hunted.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
@@ -150,7 +150,7 @@ public class Game {
     }
 
     public void printHelp() {
-        System.out.println("You are lost. You alone. You wander");
+        System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the village.");
         System.out.println();
         System.out.println("Your command words are: ");
@@ -174,7 +174,7 @@ public class Game {
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
-            System.out.println("There is no door");
+            System.out.println("There is no exit!");
         } else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
@@ -196,7 +196,7 @@ public class Game {
             }
         } else {
             // Just look- redescribes the entire room (now includes items automatically)
-            System.out.println(currentRoom.getLongDescription());
+            System.out.println(currentRoom.getItemInRoomString());
         }
     }
 
