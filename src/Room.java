@@ -2,13 +2,14 @@ import java.util.HashMap;
 
 public class Room {
 
-    private final String name;
-    private final String description;
-    private final HashMap<String, Room> exits;
+    private String name;
+    private String description;
+    private HashMap<String, Room> exits;
     private HashMap<String, Item> items;
     private String npc;
     private String lockMessage;
     private boolean isLocked;
+
 
     public Room(String name, String description) {
         this.name = name;
@@ -33,8 +34,11 @@ public class Room {
     }
 
     public String getLongDescription() {
-        String longDescription = "You are " + name + ".\n" + description + "\nExits: " + exitList();
-        return longDescription + "\n" + getExitList() + ".\n" + getItemInRoomString();
+        String longDescription = "You are " + name + ".\n" + description + "\n" + getExitString();
+        if (!items.isEmpty()) {
+            longDescription += ".\n" + getItemInRoomString();
+        }
+        return longDescription;
     }
 
     public String getShortDescription() {
@@ -42,11 +46,27 @@ public class Room {
         return sb.append("You are ").append(name).toString();
     }
 
-      private String exitList() {
+    private String exitList() {
         if (exits.isEmpty()) {
             return "none";
         }
         return String.join(", ", exits.keySet());
+    }
+
+    public String getExitString() {
+        if (exits.isEmpty()) {
+            return "There are no exits!";
+        }
+        StringBuilder sb = new StringBuilder("Exits: ");
+        int count = 0;
+        for (String direction : exits.keySet()) {
+            if (count > 0) {
+                sb.append(", ");
+            }
+            sb.append(direction);
+            count++;
+        }
+        return sb.toString();
     }
 
     public String getExitList() {
@@ -91,7 +111,7 @@ public class Room {
 
     public String getItemInRoomString() {
         if (items.isEmpty()) {
-            System.out.println("There is nothing noteworthy here.");
+            return "There is nothing noteworthy here.";
         }
         StringBuilder sb = new StringBuilder("You notice the following items: ");
         int count = 0;
