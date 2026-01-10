@@ -6,6 +6,10 @@ public class Item {
     private boolean isCursed;
 
 
+    public Item(String description, String name) {}
+
+    public Item(String description, String name, int weight) {}
+
     public Item(String description, String name, int weight, boolean isCursed) {
         this.description = description;
         this.name = name.toLowerCase();
