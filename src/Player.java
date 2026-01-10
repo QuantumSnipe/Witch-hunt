@@ -10,21 +10,69 @@ public class Player {
     private int sanity = 100;
     private int faith = 0;
     private int suspicion = 0;
+    private boolean isCursed;
 
     public Player() {
         inventory = new HashMap<>();
+
     }
 
-    public void addItem(Item item) {
-        if (maxWeight <= 5) {
-            if (item != null) {
-                inventory.put(item.getName(), item);
-                currentWeight += item.getWeight();
-                System.out.println("You picked " + item);
-            }
-        } else {
-            System.out.println("You reached your weight limit. You can't carry more items");
+    /**
+     * Attempts to take an item from the current room and add it
+     * to the player's inventory
+     * @param itemName The name of the item to take
+     * @return true if the item was successfully taken, false
+     * otherwise
+     */
+    public boolean takeItem(String itemName, Room currentRoom) {
+        if (itemName == null || itemName.trim().isEmpty()) {
+            System.out.println("Take what?");
+            return false;
         }
+        Item item = currentRoom.getItem(itemName);
+        if (item == null) {
+            System.out.println("There is no " + itemName + " here!");
+            return false;
+        }
+        currentRoom.removeItemFromRoom(itemName);  // remove from room first
+
+        // Try adding item to inventory
+        return addItem(item);
+    }
+
+    /**
+     * Add an item to inventory
+     * @param item The item to add
+     * @return true if added successfully, false otherwise
+     */
+    public boolean addItem(Item item) {
+        if (item == null) {
+            return false;
+        }
+
+        // Check weight limit
+        if (currentWeight + item.getWeight() > maxWeight) {
+            System.out.println("You can't carry that much weight. Current: " + currentWeight +
+                    "/" + maxWeight);
+            return false;
+        }
+
+        // Check for cursed items
+        if (item.isCursed()) {
+            if (this.isCursed) {
+                sanity -= 10; // Additional penalty for cursed player
+                System.out.println("This cursed item affects you deeply! Sanity decreased");
+            } else {
+                sanity -= 5;
+                System.out.println("This item is cursed! Your sanity has been affected.");
+            }
+        }
+
+        // Add to inventory
+        inventory.put(item.getName(), item);
+        currentWeight += item.getWeight();
+        System.out.println("You picked up " + item.getName());
+        return true;
     }
 
     public Item removeItem(String itemName) {
@@ -54,6 +102,4 @@ public class Player {
     public int getSuspicion() {
         return suspicion;
     }
-
-    
 }
