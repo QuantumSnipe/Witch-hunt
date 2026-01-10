@@ -1,9 +1,11 @@
 public class Game {
     private final Parser parser;
     private Room currentRoom;
+    private Player player;
 
     public Game() {
         parser = new Parser();
+        player = new Player();
         createRooms();
     }
 
@@ -87,19 +89,28 @@ public class Game {
         System.out.println(currentRoom);
     }
 
-    private void createItems(Room church, Room graveyard, Room witchhut, Room blacksmith, Room churchCellar, Room herbGarden, Room meetingHouse, Room oldCemetery, Room magistratesHouse) {
-        Item letter = new Item("We saw the witch. She shouted these weird curse words to us. She should burn in hell. I left something on the graveyard which should help.", "Letter from a witness");
-        Item potion = new Item("Restores some health", "Red Potion");
-        Item dagger = new Item("A silver dagger, resting on the table", "Silver Dagger");
-        Item torch = new Item("An old flickering torch mounted on the wall. It casts earie shadows.", "Torch");
-        Item spellbook = new Item("A dusty leather-bound book titled 'Signs of Witchcraft. It looks recently read", "Book");
-        Item poppet = new Item("A crude cloth doll stuffed with herbs and pierced with several pins. A lock of human hair is tied around its neck—someone's likeness, no doubt meant for malicious spellwork", "poppet");
-        Item cauldron = new Item("A large iron pot blackened with fire, still warm to the touch.", "cauldron");
-        Item silverCross = new Item("A small silver crucifix on a chain. It's said to ward off evil spirits and reveal witches by burning their skin on contact.", "cross");
-        Item mandrake = new Item("A gnarled root shaped eerily like a human figure.", "mandrake");
-        Item blackCandle = new Item("A candle made from tallow and blackened wax, half-burned. Used in rituals to summon dark forces. Its flame burns with an unnatural blue hue.", "black candle");
-        Item prickingNeedle = new Item("A long, sharp bodkin used by witch prickers to search for the Devil's mark.", "needle");
-        Item herbsBundle = new Item("A dried bundle of suspicious plants: belladona, henbane, and wolfsbane.", "herbs");
+    private void createItems(Room church, Room graveyard, Room witchhut, Room blacksmith, Room churchCellar,
+                             Room herbGarden, Room meetingHouse, Room oldCemetery, Room magistratesHouse) {
+        Item letter = new Item("We saw the witch. She shouted these weird curse words to us. She should burn in hell. " +
+                "I left something on the graveyard which should help.", "Letter from a witness");
+        Item potion = new Item("Restores some health", "Red Potion", 3);
+        Item dagger = new Item("A silver dagger, resting on the table", "Silver Dagger", 4);
+        Item torch = new Item("An old flickering torch mounted on the wall. It casts earie shadows.", "Torch", 2);
+        Item spellbook = new Item("A dusty leather-bound book titled 'Signs of Witchcraft. It looks recently read", "Book", 4, true);
+        Item poppet = new Item("A crude cloth doll stuffed with herbs and pierced with several pins. " +
+                "A lock of human hair is tied around its neck—someone's likeness, no doubt meant for malicious spellwork", "poppet", 2);
+        Item cauldron = new Item("A large iron pot blackened with fire, still warm to the touch.", "cauldron", 10);
+        Item silverCross = new Item("A small silver crucifix on a chain. It's said to ward off evil spirits " +
+                "and reveal witches by burning their skin on contact.", "cross", 3);
+        Item mandrake = new Item("A gnarled root shaped eerily like a human figure.", "mandrake", 2);
+        Item blackCandle = new Item("A candle made from tallow and blackened wax, half-burned. Used in rituals to summon dark forces. " +
+                "Its flame burns with an unnatural blue hue.", "black candle", 2, true);
+        Item prickingNeedle = new Item("A long, sharp bodkin used by witch prickers to search for the Devil's mark.", "needle", 1);
+        Item herbsBundle = new Item("A dried bundle of suspicious plants: belladonna, henbane, and wolfsbane.", "herbs", 1);
+        Item sword = new Item("A heavy, pitted longsword, its once-sharp blade now dulled and speckled with rust. " +
+                "The leather-wrapped hilt is stained dark – " +
+                "whether from old blood or something worse, you can't tell. It feels heavier than it should",
+                "Longsword", 8, false);
 
 
         church.addItemToRoom(silverCross);
@@ -107,6 +118,7 @@ public class Game {
         graveyard.addItemToRoom(blackCandle);
         graveyard.addItemToRoom(prickingNeedle);
         churchCellar.addItemToRoom(spellbook);
+        churchCellar.addItemToRoom(sword);
         witchhut.addItemToRoom(cauldron);
         oldCemetery.addItemToRoom(poppet);
         herbGarden.addItemToRoom(mandrake);
@@ -144,6 +156,7 @@ public class Game {
             case HELP -> printHelp();
             case GO -> goRoom(command);
             case LOOK -> lookInRoom(command);
+            case TAKE -> takeItem(command);
             case QUIT -> wantToQuit = quit(command);
         }
         return wantToQuit;
@@ -161,7 +174,7 @@ public class Game {
      * Try to go to one direction. If there is an exit, enter
      * new room, or print an error message
      *
-     * @param command
+     * @param command command word from @link CommandWord
      */
     public void goRoom(Command command) {
         if (!command.hasSecondWord()) {
@@ -200,6 +213,15 @@ public class Game {
         }
     }
 
+    public void takeItem(Command command) {
+        if (!command.hasSecondWord()) {
+            System.out.println("Take what?");
+            return;
+        }
+        String itemName = command.getSecondWord();
+        boolean success = player.takeItem(itemName, currentRoom);
+    }
+
     private boolean quit(Command command) {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
@@ -210,12 +232,8 @@ public class Game {
         }
     }
 
-    // Getter method which helps with testing
+    // Getter method for testing
     public Room getCurrentRoom() {
         return currentRoom;
-    }
-
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
     }
 }
