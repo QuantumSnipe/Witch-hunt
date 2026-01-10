@@ -4,17 +4,17 @@ public class NPC {
     private String description;
 
 
-    public NPC(String name, String description, String itemName, String itemDesc) {
+    public NPC(String name, String description) {
         this.description = description;
         this.name = name;
 
     }
 
-    public String getName() {
+    public String getNPCName() {
         return name;
     }
 
-    public String getDescription() {
+    public String getNPCDescription() {
         return description;
     }
 }
