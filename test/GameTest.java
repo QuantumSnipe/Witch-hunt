@@ -22,6 +22,4 @@ public class GameTest {
         game.processCommand(new Command(CommandWord.GO, "east"));
         assertEquals("You are in the Black Goat Tavern", game.getCurrentRoom().getShortDescription());
     }
-
-
 }

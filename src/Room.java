@@ -11,6 +11,12 @@ public class Room {
     private boolean isLocked;
 
 
+    public Room(String name) {
+        this.name = name;
+        exits = new HashMap<>();
+        items = new HashMap<>();
+    }
+
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
