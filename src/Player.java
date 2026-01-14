@@ -4,7 +4,7 @@ import java.util.HashMap;
  * Player class, the main character of the game and controllable.
  */
 public class Player {
-    private HashMap<String, Item> inventory;
+    private final HashMap<String, Item> inventory;
     private int maxWeight = 50;
     private int currentWeight = 0;
     private int sanity = 100;
