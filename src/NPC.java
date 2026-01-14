@@ -4,10 +4,12 @@ public class NPC {
     private String description;
 
 
-    public NPC(String name, String description) {
-        this.description = description;
-        this.name = name;
+    public NPC() {
+    }
 
+    public NPC(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public String getNPCName() {
@@ -16,5 +18,13 @@ public class NPC {
 
     public String getNPCDescription() {
         return description;
+    }
+
+     public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
