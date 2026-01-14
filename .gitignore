@@ -15,3 +15,7 @@ bin/
 # Mac/Win
 .DS_Store
 Thumbs.db
+
+# Maven
+target/
+.mvn/wrapper/maven-wrapper.jar
