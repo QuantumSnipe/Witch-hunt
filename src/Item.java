@@ -6,6 +6,13 @@ public class Item {
     private boolean isCursed;
 
 
+    /**
+     * Constructor without parameters
+     */
+    public Item() {
+
+    }
+
     public Item(String description, String name) {
         this.description = description;
         this.name = name.toLowerCase();
