@@ -14,7 +14,6 @@ public class Player {
 
     public Player() {
         inventory = new HashMap<>();
-
     }
 
     /**
@@ -101,5 +100,30 @@ public class Player {
 
     public int getSuspicion() {
         return suspicion;
+    }
+
+    public void setMaxWeight(int maxWeight) {
+        this.maxWeight = maxWeight;
+    }
+
+    public void setCurrentWeight(int currentWeight) {
+        this.currentWeight = currentWeight;
+    }
+
+    public void setSanity(int sanity) {
+        this.sanity = sanity;
+        System.out.println("Current sanity: " + sanity);
+    }
+
+    public void setFaith(int faith) {
+        this.faith = faith;
+    }
+
+    public void setSuspicion(int suspicion) {
+        this.suspicion = suspicion;
+    }
+
+    public void setCursed(boolean cursed) {
+        isCursed = cursed;
     }
 }
