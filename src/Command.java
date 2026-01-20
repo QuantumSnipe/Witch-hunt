@@ -1,6 +1,7 @@
 public class Command {
-	private final CommandWord commandWord;
-	private final String secondWord;
+	
+	private CommandWord commandWord;
+	private String secondWord;
 
 	public Command(CommandWord commandWord, String argument) {
 		this.commandWord = commandWord;
@@ -22,4 +23,12 @@ public class Command {
 	public boolean hasSecondWord() {
 		return secondWord != null;
 	}
+
+    public void setCommandWord(CommandWord commandWord) {
+        this.commandWord = commandWord;
+    }
+
+    public void setSecondWord(String secondWord) {
+        this.secondWord = secondWord;
+    }
 }
