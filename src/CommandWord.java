@@ -11,6 +11,10 @@ public enum CommandWord {
 		this.commandString = commandString;
     }
 
+	public String getCommandString() {
+		return commandString;
+	}
+
 	public String toString() {
 		return commandString;
 	}
