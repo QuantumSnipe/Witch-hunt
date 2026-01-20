@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Room {
 
@@ -6,22 +7,17 @@ public class Room {
     private String description;
     private HashMap<String, Room> exits;
     private HashMap<String, Item> items;
-    private String npc;
     private String lockMessage;
     private boolean isLocked;
+    private HashSet<NPC> charactersInRoom;
 
-
-    public Room(String name) {
-        this.name = name;
-        exits = new HashMap<>();
-        items = new HashMap<>();
-    }
 
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
         exits = new HashMap<>();
         items = new HashMap<>();
+        charactersInRoom = new HashSet<>();
     }
 
     public String getName() {
@@ -80,12 +76,20 @@ public class Room {
     }
 
     // NPCs
-    public String getNpc() {
-        return npc;
+    private String getNpcInRoomString() {
+        String npcString = "Character:";
+        for (NPC npc : charactersInRoom) {
+            npcString += "\n" + npc.getNPCName();
+        }
+        return npcString;
     }
 
-    public void setNpc(String npc) {
-        this.npc = npc;
+    public void addNpcToRoom(NPC npc) {
+        charactersInRoom.add(npc);
+    }
+
+    public void removeNPC(NPC npc) {
+        charactersInRoom.remove(npc);
     }
 
     // Door access
