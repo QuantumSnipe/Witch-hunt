@@ -1,19 +1,17 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class PlayerTest {
 
     private Player player;
-    private Room room;
-    private Item item;
-
 
     @Before
     public void setUp() {
         player = new Player();
-        room = new Room("Church");
+        
     }
 
     @Test
@@ -24,6 +22,7 @@ public class PlayerTest {
 
     @Test
     public void testAddItem_WeightExceedsMax() {
+        Item item = new Item("book", "book", 2);
         assertFalse(player.addItem(item));
         assertEquals(0, player.getCurrentWeight());
     }
