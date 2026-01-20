@@ -10,29 +10,53 @@ public class Game {
     }
 
     private void createRooms() {
-        Room square = new Room("in the Village Square", "Cobblestones slick with fog. Torches flicker.");
+        Room square = new Room("in the Village Square", "Cobblestones slick with fog. A muddy open space ringed by " +
+                "crooked timber framed houses that lean inward. A young blond woman is locked in the stocks, her wrists " +
+                "and neck trapped in the heavy boards.");
+
         Room church = new Room("in St. Aldric's Church", "Cold stone arches with damp. Candles sputter before a crooked altar. " +
                 "The scent of incense struggles to hide the rot beneath the floorboards.");
+
         Room graveyard = new Room("in the graveyard", "Iron gates lean inward, guarding rows of tilting headstones. " +
                 "A raven watches from a cracked angel's shoulders.");
+
         Room tavern = new Room("in the Black Goat Tavern", "Smoke, ale, and whispers. Eyes " +
                 "follow you from the shadows.");
-        Room gallows = new Room("Gallows Hill", "You stand atop the barren hill where the village hangs its condemned. A weathered wooden scaffold looms overhead. Below it lies a patch of trampled earth stained dark with old blood. ");
-        Room blacksmith = new Room("Blacksmith's Forge", "Tools hang in perfect rows-except one hammer, crusted with dried blood.");
-        Room mayor = new Room("Mayor Hawthorne's Manor", "Polished oak and velvet lies. Portraits from past mayors hang around. A small " +
+
+        Room gallows = new Room("Gallows Hill", "You stand atop the barren hill where the village hangs its condemned. " +
+                "A weathered wooden scaffold looms overhead. Below it lies a patch of trampled earth stained dark " +
+                "with old blood. ");
+
+        Room blacksmith = new Room("Blacksmith's Forge", "Tools hang in perfect rows-except one hammer, crusted with " +
+                "dried blood.");
+
+        Room mayor = new Room("Mayor Hawthorne's Manor", "Polished oak and velvet lies. Portraits from past mayors " +
+                "hang around. A small " +
                 "fire burns red and blue.");
+
         Room well = new Room("Village Well", "A stone ring in the square's corner.");
+
         Room forest = new Room("The Dark Woods", "The trees stand tall and too close together, " +
                 "their roots clutching bones of old paths.");
+
         Room witchHut = new Room("Witch's Hut (Forest Edge)", "A crooked cottage of bones and thatch. " +
                 "Herbs dry upside-down. A cauldron bubbles with something...");
 
         Room apothecary = new Room("Apothecary shop", "The air is thick with the smell of dried herbs.");
+
         Room meetingHouse = new Room("the village meeting house", "The old court house. The single room is lit only by a dying fire.");
-        Room churchCellar = new Room("the damp cellar beneath the church", "The air is cold and stale. Chains hang from the walls, and a small wooden cage stands empty in the corner.");
-        Room magistratesHouse = new Room("the magistrate's house", "Dark wood paneling and heavy furniture speak of wealth and authority. A large desk holds papers and a quill still wet with ink. A locked door leads deeper in the house.");
-        Room oldCemetery = new Room("the old cemetery", "Moss-covered headstones lean at odd angles. A fresh grave has been dug recently-no marker yet.");
-        Room herbGarden = new Room("the herbalist's overgrown garden", "Weeds and strange plants choke the once-tidy rows. A small stone well stands in the center.");
+
+        Room churchCellar = new Room("the damp cellar beneath the church", "The air is cold and stale. " +
+                "Chains hang from the walls, and a small wooden cage stands empty in the corner.");
+
+        Room magistratesHouse = new Room("the magistrate's house", "Dark wood paneling and heavy furniture speak of wealth and authority. " +
+                "A large desk holds papers and a quill still wet with ink. A locked door leads deeper in the house.");
+
+        Room oldCemetery = new Room("the old cemetery", "Moss-covered headstones lean at odd angles. " +
+                "A fresh grave has been dug recently-no marker yet.");
+
+        Room herbGarden = new Room("the herbalist's overgrown garden", "Weeds and strange plants choke the once-tidy rows. " +
+                "A small stone well stands in the center.");
 
 
         // initialize exits and directions
@@ -93,26 +117,38 @@ public class Game {
                              Room herbGarden, Room meetingHouse, Room oldCemetery, Room magistratesHouse) {
         Item letter = new Item("We saw the witch. She shouted these weird curse words to us. She should burn in hell. " +
                 "I left something on the graveyard which should help.", "Letter from a witness");
+
         Item potion = new Item("Restores some health", "Red Potion", 3);
+
         Item dagger = new Item("A silver dagger, resting on the table", "Silver Dagger", 4);
+
         Item torch = new Item("An old flickering torch mounted on the wall. It casts earie shadows.", "Torch", 2);
+
         Item spellbook = new Item("A dusty leather-bound book titled 'Signs of Witchcraft. It looks recently read", "Book", 4, true);
+
         Item poppet = new Item("A crude cloth doll stuffed with herbs and pierced with several pins. " +
                 "A lock of human hair is tied around its neck—someone's likeness, no doubt meant for malicious spellwork", "poppet", 2);
+
         Item cauldron = new Item("A large iron pot blackened with fire, still warm to the touch.", "cauldron", 10);
+
         Item silverCross = new Item("A small silver crucifix on a chain. It's said to ward off evil spirits " +
                 "and reveal witches by burning their skin on contact.", "cross", 3);
+
         Item mandrake = new Item("A gnarled root shaped eerily like a human figure.", "mandrake", 2);
+
         Item blackCandle = new Item("A candle made from tallow and blackened wax, half-burned. Used in rituals to summon dark forces. " +
                 "Its flame burns with an unnatural blue hue.", "black candle", 2, true);
+
         Item prickingNeedle = new Item("A long, sharp bodkin used by witch prickers to search for the Devil's mark.", "needle", 1);
+
         Item herbsBundle = new Item("A dried bundle of suspicious plants: belladonna, henbane, and wolfsbane.", "herbs", 1);
+
         Item sword = new Item("A heavy, pitted longsword, its once-sharp blade now dulled and speckled with rust. " +
                 "The leather-wrapped hilt is stained dark – " +
                 "whether from old blood or something worse, you can't tell. It feels heavier than it should",
                 "Longsword", 8, false);
 
-
+        // Add items to Rooms
         church.addItemToRoom(silverCross);
         church.addItemToRoom(potion);
         graveyard.addItemToRoom(blackCandle);
@@ -126,6 +162,38 @@ public class Game {
         magistratesHouse.addItemToRoom(letter);
         blacksmith.addItemToRoom(dagger);
         meetingHouse.addItemToRoom(torch);
+    }
+
+    private void createNPCs(Room church, Room herbGarden, Room meetingHouse, Room mayor, Room square, Room tavern) {
+        NPC priest = new NPC("Father Elias", "A gaunt man in his sixties, always clutching a worn silver crucifix that catches" +
+                "the light wrong.");
+
+        NPC herbalist = new NPC("Mistress Agatha", "An old woman with wild gray hair barely tamed by a linen coif," +
+                "fingers painted green from roots and berries. She seems to know a lot about plants.");
+
+        NPC tavernKeeper = new NPC("Old Tom Fletcher", "Fat, red nosed, always wiping tankards with a rag. The tavern is the only " +
+                "warm place in town.");
+
+        NPC girl = new NPC("Little Bess", "A child of about ten, dressed in rags, always lurking in shadows with wide unblinking eyes. " +
+                "Carries a rag doll that looks... wrong somehow.");
+
+        NPC captain = new NPC("Captain Nathaniel Thorne - the witch hunter", "Tall broad shouldered man, " +
+                "dressed in a long black coat and wide brimmed hat.");
+
+        NPC goodwife = new NPC("Goodwife Mercy Hale", "Young woman, mid twenties, once the prettiest in village. " +
+                "Now bruised, hair matted, dress torn. Still has this spark in her eyes that makes people nervous.");
+
+        NPC villageMayor = new NPC("Mayor Josiah Whitcomb", "A portly man in late forties, dressed finer than anyone else. " +
+                "He always talks about 'purging evil'.");
+
+
+        church.addNpcToRoom(priest);
+        herbGarden.addNpcToRoom(herbalist);
+        square.addNpcToRoom(girl);
+        square.addNpcToRoom(goodwife);
+        tavern.addNpcToRoom(tavernKeeper);
+        meetingHouse.addNpcToRoom(captain);
+        mayor.addNpcToRoom(villageMayor);
     }
 
     public void playGame() {
