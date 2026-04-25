@@ -132,12 +132,20 @@ public class Room {
     }
 
     public void lock(String message) {
-        isLocked = true;
-        lockMessage = (message == null || message.isBlank()) ? null : message;
+        locked = true;
+        lockMessage = normalizeMessage(message);
+    }
+
+    public void unlock() {
+        locked = false;
+        lockMessage = null;
     }
 
     public String getLockMessage() {
-        return (lockMessage == null || lockMessage.isBlank()) ? "It won't budge." : lockMessage;
+        if (lockMessage == null) {
+            return "It won't budge";
+        }
+        return lockMessage;
     }
     
     // Items
