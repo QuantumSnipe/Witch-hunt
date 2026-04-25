@@ -281,6 +281,24 @@ public class Game {
         }
     }
 
+    public void investigateItem(Command command) {
+        if (!command.hasSecondWord()) {
+            System.out.println("Investigate what?");
+            return;
+        }
+        String itemName = command.getSecondWord().trim();
+        Item item = player.getItem(itemName);
+        if (item != null) {
+            System.out.println(item.getDescription());
+        } else {
+            System.out.println("You don't have " + itemName + " in your inventory.");
+        }
+    }
+
+    /**
+     * Take an item in a room if it exists
+     * @param command Command 'take' to pick up an item
+     */
     public void takeItem(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Take what?");
