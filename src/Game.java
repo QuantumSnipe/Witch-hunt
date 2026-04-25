@@ -225,6 +225,7 @@ public class Game {
             case GO -> goRoom(command);
             case LOOK -> lookInRoom(command);
             case TAKE -> takeItem(command);
+            case INVESTIGATE -> investigateItem(command);
             case QUIT -> wantToQuit = quit(command);
         }
         return wantToQuit;
