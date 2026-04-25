@@ -158,4 +158,23 @@ public class Room {
         }
         return sb.toString();
     }
+
+    private String normalizeKey(String key) {
+        if (key == null) {
+            return "";
+        }
+        return key.trim().toLowerCase();
+    }
+
+    private String normalizeMessage(String message) {
+        if (message == null | message.isBlank()) {
+            return null;
+        }
+        return message;
+    }
+
+    @Override
+    public String toString() {
+        return getShortDescription();
+    }
 }
