@@ -122,7 +122,6 @@ public class Game {
 
 
         currentRoom = square;
-        System.out.println(currentRoom);
     }
 
     private void createItems(Room church, Room graveyard, Room witchhut, Room blacksmith, Room churchCellar,
