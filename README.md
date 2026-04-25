@@ -2,9 +2,9 @@
 
 <img src="doc/eldermond.jpg" alt="Eldermond" width="300" height="200">
 
-> “The village of Eldermoor burns. Accusations fly like crows.  
-> You have until dawn to find the real witch…  
-> or become the next pyre.”
+> “The bell tolls over Eldermond. Fog crawls between the houses, whispers hide behind locked doors,  
+> and by sunrise someone will burn.  
+> Find the witch before fear turns the village against you.”
 
 A dark, atmospheric text adventure written in pure Java.  
 Features:
