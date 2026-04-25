@@ -22,8 +22,7 @@ public class Room {
     private final Set<NPC> charactersInRoom;
 
     private String lockMessage;
-    private boolean isLocked;
-    private HashSet<NPC> charactersInRoom;
+    private boolean locked;
 
 
     public Room(String name, String description) {
@@ -119,7 +118,7 @@ public class Room {
 
     // Door access
     public boolean isLocked() {
-        return isLocked;
+        return locked;
     }
 
     public void lock(String message) {
