@@ -308,6 +308,11 @@ public class Game {
         boolean success = player.takeItem(itemName, currentRoom);
     }
 
+    /**
+     * The command to quit the game
+     * @param command Command word 'quit'
+     * @return Quit the game
+     */
     private boolean quit(Command command) {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
