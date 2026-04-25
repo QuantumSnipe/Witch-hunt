@@ -304,8 +304,25 @@ public class Game {
             System.out.println("Take what?");
             return;
         }
-        String itemName = command.getSecondWord();
+        String itemName = command.getSecondWord().trim();
+        Item itemInRoom = currentRoom.getItem(itemName);
         boolean success = player.takeItem(itemName, currentRoom);
+        if (success) {
+            System.out.println("You picked: " + player.getItem(itemName));
+        } else {
+            System.out.println("You couldn't pick " + itemInRoom);
+        }
+    }
+
+    /**
+     * Player can talk to an NPC if in room
+     * @param command Command 'talk' to talk to the NPC
+     */
+    public void talkToCharacter(Command command) {String character = command.getSecondWord();
+        if (!command.hasSecondWord()) {
+            System.out.println("Talk to whom?");
+        }
+        String characterName = command.getSecondWord();
     }
 
     /**
