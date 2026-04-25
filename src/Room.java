@@ -104,7 +104,29 @@ public class Room {
         charactersInRoom.remove(npc);
     }
 
-    // Door access
+    /**
+     * Returns a formatted string listing all NPCs currently present in the room.
+     * The string includes a header followed by a comma-separated list of NPC names.
+     * If no NPCs are present, only the header text is returned.
+     *
+     * @return a string containing "Characters currently in room: " followed by the names
+     *         of all NPCs in the room, separated by commas
+     */
+    public String getNpcInRoomString() {
+        StringBuilder npcString = new StringBuilder("Characters currently in room: ");
+
+        int count = 0;
+        for (NPC npc : charactersInRoom) {
+            if (count > 0) {
+                npcString.append(", ");
+            }
+            npcString.append(npc.getNPCName());
+            count++;
+        }
+        return npcString.toString();
+    }
+
+
     public boolean isLocked() {
         return locked;
     }
