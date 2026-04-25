@@ -87,49 +87,17 @@ public class Room {
         return descriptionBuilder.toString();
     }
 
-    public String getShortDescription() {
-        StringBuilder sb = new StringBuilder();
-        return sb.append("You are ").append(name).toString();
-    }
-
-    private String exitList() {
-        if (exits.isEmpty()) {
-            return "none";
-        }
-        return String.join(", ", exits.keySet());
-    }
-
     public String getExitString() {
         if (exits.isEmpty()) {
-            return "There are no exits!";
+            return "There are no exits";
         }
-        StringBuilder sb = new StringBuilder("Exits: ");
-        int count = 0;
-        for (String direction : exits.keySet()) {
-            if (count > 0) {
-                sb.append(", ");
-            }
-            sb.append(direction);
-            count++;
-        }
-        return sb.toString();
-    }
-
-    public String getExitList() {
-        return exitList();
-    }
-
-    // NPCs
-    private String getNpcInRoomString() {
-        String npcString = "Character:";
-        for (NPC npc : charactersInRoom) {
-            npcString += "\n" + npc.getNPCName();
-        }
-        return npcString;
+        return "Exits: " + String.join(", ", exits.keySet());
     }
 
     public void addNpcToRoom(NPC npc) {
-        charactersInRoom.add(npc);
+        if (npc != null) {
+            charactersInRoom.add(npc);
+        }
     }
 
     public void removeNPC(NPC npc) {
