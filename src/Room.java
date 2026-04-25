@@ -154,27 +154,28 @@ public class Room {
     }
 
     public Item getItem(String itemName) {
-        return items.get(itemName.toLowerCase());
+        return items.get(normalizeKey(itemName));
     }
 
     public Item removeItemFromRoom(String itemName) {
-        return items.remove(itemName.toLowerCase());
+        return items.remove(normalizeKey(itemName));
     }
 
     public String getItemInRoomString() {
         if (items.isEmpty()) {
             return "There is nothing noteworthy here.";
         }
-        StringBuilder sb = new StringBuilder("You notice the following items: ");
+
+        StringBuilder itemString = new StringBuilder("You notice the following items: ");
         int count = 0;
         for (Item item : items.values()) {
             if (count > 0) {
-                sb.append(", ");
+                itemString.append(", ");
             }
-            sb.append(item.getName());
+            itemString.append(item.getName());
             count++;
         }
-        return sb.toString();
+        return itemString.toString();
     }
 
     private String normalizeKey(String key) {
