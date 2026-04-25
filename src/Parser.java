@@ -21,8 +21,15 @@ public class Parser {
         try (Scanner tokenizer = new Scanner(inputLine)) {
             if (tokenizer.hasNext()) {
                 word1 = tokenizer.next();
-                if (tokenizer.hasNext()) {
-                    word2 = tokenizer.next();
+                StringBuilder rest = new StringBuilder();
+                while (tokenizer.hasNext()) {
+                    if (rest.length() > 0) {
+                        rest.append(" ");
+                    }
+                    rest.append(tokenizer.next());
+                }
+                if (rest.length() > 0) {
+                    word2 = rest.toString();
                 }
             }
         }
