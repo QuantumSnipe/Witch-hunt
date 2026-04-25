@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 /**
  * Represents a location in a text-based adventure game.
@@ -16,10 +15,12 @@ import java.util.HashSet;
  */
 public class Room {
 
-    private String name;
-    private String description;
-    private HashMap<String, Room> exits;
-    private HashMap<String, Item> items;
+    private final String name;
+    private final String description;
+    private final Map<String, Room> exits;
+    private final Map<String, Item> items;
+    private final Set<NPC> charactersInRoom;
+
     private String lockMessage;
     private boolean isLocked;
     private HashSet<NPC> charactersInRoom;
@@ -28,9 +29,9 @@ public class Room {
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
-        exits = new HashMap<>();
-        items = new HashMap<>();
-        charactersInRoom = new HashSet<>();
+        exits = new LinkedHashMap<>();
+        items = new LinkedHashMap<>();
+        charactersInRoom = new LinkedHashSet<>();
     }
 
     public String getName() {
