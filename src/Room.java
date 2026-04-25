@@ -49,7 +49,15 @@ public class Room {
     }
 
     public String getLongDescription() {
-        String longDescription = "You are " + name + ".\n" + description + "\n" + getExitString();
+        StringBuilder descriptionBuilder = new StringBuilder();
+
+        descriptionBuilder
+                .append(getShortDescription())
+                .append(".\n")
+                .append(description)
+                .append("\n")
+                .append(getExitString());
+
         if (!items.isEmpty()) {
             longDescription += ".\n" + getItemInRoomString();
         }
