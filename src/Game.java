@@ -118,9 +118,9 @@ public class Game {
         Item letter = new Item("We saw the witch. She shouted these weird curse words to us. She should burn in hell. " +
                 "I left something on the graveyard which should help.", "Letter from a witness");
 
-        Item potion = new Item("Restores some health", "Red Potion", 3);
+        Item potion = new Item("Restores some health", "potion", 3);
 
-        Item dagger = new Item("A silver dagger, resting on the table", "Silver Dagger", 4);
+        Item dagger = new Item("A silver dagger, resting on the table", "dagger", 4);
 
         Item torch = new Item("An old flickering torch mounted on the wall. It casts earie shadows.", "Torch", 2);
 
@@ -132,7 +132,7 @@ public class Game {
         Item cauldron = new Item("A large iron pot blackened with fire, still warm to the touch.", "cauldron", 10);
 
         Item silverCross = new Item("A small silver crucifix on a chain. It's said to ward off evil spirits " +
-                "and reveal witches by burning their skin on contact.", "cross", 3);
+                "and reveal witches by burning their skin on contact.", "silver cross", 3);
 
         Item mandrake = new Item("A gnarled root shaped eerily like a human figure.", "mandrake", 2);
 
