@@ -1,6 +1,6 @@
 # Witch Hunt
 
-https://i.imgur.com/0J4Vq3g.png
+<img src="doc/eldermond.jpg" alt="Eldermond" width="300" height="200">
 
 > “The village of Eldermoor burns. Accusations fly like crows.  
 > You have until dawn to find the real witch…  
