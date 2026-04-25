@@ -38,7 +38,10 @@ public class Room {
     }
 
     public void setExit(String direction, Room neighbor) {
-        exits.put(direction, neighbor);
+        if (direction == null | neighbor == null) {
+            return;
+        }
+        exits.put(direction.toLowerCase(), neighbor);
     }
 
     public Room getExit(String direction) {
