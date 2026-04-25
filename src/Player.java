@@ -74,6 +74,10 @@ public class Player {
         return true;
     }
 
+    public Item getItem(String itemName) {
+        return inventory.get(itemName.toLowerCase());
+    }
+
     public Item removeItem(String itemName) {
         Item item = inventory.remove(itemName);
         if (item != null) {
