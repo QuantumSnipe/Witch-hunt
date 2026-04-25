@@ -48,7 +48,7 @@ public class Room {
         if (direction == null) {
             return null;
         }
-        return exits.get(direction);
+        return exits.get(direction.toLowerCase());
     }
 
     public String getShortDescription() {
