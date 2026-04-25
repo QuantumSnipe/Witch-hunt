@@ -51,6 +51,18 @@ public class Room {
         return exits.get(direction);
     }
 
+    public String getShortDescription() {
+        return "You are " + name;
+    }
+
+    /**
+     * Returns a comprehensive description of the room including its short description,
+     * full description, available exits, items present, and any NPCs in the room.
+     * The description is formatted with line breaks between each section.
+     *
+     * @return a detailed multi-line string containing all room information including
+     *         location name, description, exits, items (if any), and characters (if any)
+     */
     public String getLongDescription() {
         StringBuilder descriptionBuilder = new StringBuilder();
 
@@ -62,9 +74,17 @@ public class Room {
                 .append(getExitString());
 
         if (!items.isEmpty()) {
-            longDescription += ".\n" + getItemInRoomString();
+            descriptionBuilder
+                    .append(".\n")
+                    .append(getItemInRoomString());
         }
-        return longDescription;
+
+        if (!charactersInRoom.isEmpty()) {
+            descriptionBuilder
+                    .append(".\n")
+                    .append(getNpcInRoomString());
+        }
+        return descriptionBuilder.toString();
     }
 
     public String getShortDescription() {
