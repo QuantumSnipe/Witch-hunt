@@ -1,3 +1,8 @@
+/**
+ * Represents a time management system that tracks current time, elapsed time, and enforces time boundaries.
+ * Time is internally stored and manipulated in minutes, with support for 24-hour format display.
+ * This class is useful for games or applications that need to track time progression and check against deadlines.
+ */
 public class Time {
 
     private int time;

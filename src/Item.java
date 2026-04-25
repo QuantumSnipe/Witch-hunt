@@ -1,3 +1,8 @@
+/**
+ * Represents an in-game item with physical and magical properties.
+ * Each item has a name, description, weight, and can optionally be cursed.
+ * Item names are automatically converted to lowercase for consistency.
+ */
 public class Item {
 
     private String description;

@@ -1,5 +1,11 @@
 import java.util.HashMap;
 
+/**
+ * Manages and validates available command words in the game.
+ * This class maintains a collection of valid commands and provides methods to verify
+ * if a given string represents a valid command and to retrieve the corresponding
+ * CommandWord enumeration value.
+ */
 public class CommandWords {
 
 	private final HashMap<String, CommandWord> validCommands;

@@ -1,3 +1,8 @@
+/**
+ * Represents a Non-Player Character (NPC) in a game or interactive system.
+ * This class serves as a base representation for NPCs with a name and description.
+ * It can be extended by specific NPC types to add additional behavior and attributes.
+ */
 public class NPC {
 
     private String name;

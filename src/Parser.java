@@ -1,5 +1,14 @@
 import java.util.Scanner;
 
+/**
+ * Handles parsing of user input commands in the game.
+ * The parser reads input from the console, tokenizes it into command words and arguments,
+ * and converts it into Command objects that can be processed by the game engine.
+ *
+ * The parser recognizes the first word of user input as the command word and treats
+ * all remaining words as a single argument string. Input is validated against a set
+ * of known commands managed by the CommandWords class.
+ */
 public class Parser {
     private final CommandWords commands;
     private final Scanner reader;

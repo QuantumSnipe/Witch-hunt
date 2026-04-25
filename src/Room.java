@@ -1,6 +1,19 @@
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * Represents a location in a text-based adventure game.
+ *<p>
+ * A Room contains a name and description, and manages connections to other rooms through exits
+ * in various directions. Rooms can contain items that can be collected or examined, and NPCs
+ * that inhabit the space. Rooms may also be locked, preventing access until unlocked.
+ *<p>
+ * Each room maintains:
+ * - A collection of exits mapped by direction strings (e.g., "north", "south")
+ * - A collection of items that can be interacted with
+ * - A set of NPCs currently present in the room
+ * - A lock state with an optional custom lock message
+ */
 public class Room {
 
     private String name;

@@ -1,3 +1,9 @@
+/**
+ * Defines all valid command words that can be used in the game.
+ * Each enum constant represents a specific action or command that players can execute,
+ * such as movement, interaction with objects, or system operations. The UNKNOWN constant
+ * represents any unrecognized command input.
+ */
 public enum CommandWord {
 
 	GO("go"), QUIT("quit"), HELP("help"), 

@@ -1,3 +1,15 @@
+/**
+ * Main game engine for a text-based adventure game set in a historical setting.
+ * Manages the game world, player interactions, and command processing.
+ *
+ * The Game class coordinates all major game systems including room navigation,
+ * item management, NPC interactions, and command parsing. It initializes the
+ * game world by creating rooms, items, and NPCs, then enters a main game loop
+ * that processes player commands until the game ends.
+ *
+ * The game supports various commands including movement between rooms, examining
+ * and collecting items, talking to NPCs, and receiving help information.
+ */
 public class Game {
     private final Parser parser;
     private Room currentRoom;
@@ -240,10 +252,12 @@ public class Game {
     }
 
     /**
-     * Try to go to one direction. If there is an exit, enter
-     * new room, or print an error message
+     * Attempts to move the player to an adjacent room in the specified direction.
+     * If no direction is provided in the command, prompts the user to specify where to go.
+     * If there is no exit in the given direction, notifies the user that the exit does not exist.
+     * Upon successful movement, updates the current room and displays its description.
      *
-     * @param command command word from @link CommandWord
+     * @param command the command containing the direction to move in as the second word
      */
     public void goRoom(Command command) {
         if (!command.hasSecondWord()) {
@@ -264,8 +278,11 @@ public class Game {
     }
 
     /**
-     * Look around when you are in a room 
-     * to find items. 
+     * Examines items in the current room. If a specific item name is provided as a second word,
+     * displays the description of that item. If no second word is provided, displays a list of
+     * all items present in the room.
+     *
+     * @param command the command containing an optional item name to examine
      */
     public void lookInRoom(Command command) {
         if (command.hasSecondWord()) {
@@ -282,6 +299,13 @@ public class Game {
         }
     }
 
+    /**
+     * Investigates an item in the player's inventory and displays its description.
+     * If no item name is provided or the item is not found in the inventory,
+     * an appropriate error message is displayed.
+     *
+     * @param command the command containing the name of the item to investigate
+     */
     public void investigateItem(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Investigate what?");
@@ -297,8 +321,12 @@ public class Game {
     }
 
     /**
-     * Take an item in a room if it exists
-     * @param command Command 'take' to pick up an item
+     * Attempts to take an item from the current room and add it to the player's inventory.
+     * Validates that the command has a second word specifying the item name, retrieves the item
+     * from the current room, and attempts to add it to the player's inventory. Displays
+     * appropriate success or failure messages based on the outcome.
+     *
+     * @param command the command containing the name of the item to take
      */
     public void takeItem(Command command) {
         if (!command.hasSecondWord()) {
@@ -316,8 +344,10 @@ public class Game {
     }
 
     /**
-     * Player can talk to an NPC if in room
-     * @param command Command 'talk' to talk to the NPC
+     * Initiates a conversation with a character (NPC) in the current room.
+     * If no character name is specified in the command, prompts the user to specify whom to talk to.
+     *
+     * @param command the command containing the name of the character to talk to
      */
     public void talkToCharacter(Command command) {String character = command.getSecondWord();
         if (!command.hasSecondWord()) {

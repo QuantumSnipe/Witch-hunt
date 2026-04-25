@@ -1,7 +1,10 @@
 import java.util.HashMap;
 
 /**
- * Player class, the main character of the game and controllable.
+ * Represents a player character in the game with inventory management,
+ * character statistics, and curse mechanics. The player can carry items
+ * up to a maximum weight limit and has various attributes including
+ * sanity, faith, and suspicion that affect gameplay.
  */
 public class Player {
     private final HashMap<String, Item> inventory;
